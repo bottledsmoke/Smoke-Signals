@@ -9,3 +9,7 @@ ROOT = exports ? this
 
 # R O U T E S ------------------------------------------------------------------
 
+Router.route '/',
+  name: 'postsList'
+  waitOn: ->
+    Meteor.subscribe('posts')
