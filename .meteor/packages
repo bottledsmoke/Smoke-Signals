@@ -6,10 +6,8 @@
 
 meteor-platform
 insecure
-fourseven:scss
 coffeescript
-meta:susy
 iron:router
 aldeed:collection2
 momentjs:moment
-mike:mocha
+cryptoquick:stylus-multi

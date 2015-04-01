@@ -11,5 +11,15 @@ ROOT = exports ? this
 
 Router.route '/',
   name: 'postsList'
-  waitOn: ->
+  data: ->
     Meteor.subscribe('posts')
+
+Router.route '/create',
+  name: 'postCreate'
+
+Router.route '/:_id',
+  name: 'postShow'
+  waitOn: ->
+    Meteor.subscribe('singlePost', @params._id)
+  data: ->
+    Posts.findOne(@params._id)
