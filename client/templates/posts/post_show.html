@@ -1,8 +1,13 @@
 <template name="postShow">
+<!--   {{#each block}}
+    {{> Template.dynamic template=template}}
+  {{/each}}
+
   {{#if isEditing}}
     <input type="text" name='title' id='title' value='{{title}}'>
     <button class='submit'>Submit</button>
   {{else}}
+
     <h1>{{title}}</h1>
   {{/if}}
   <h5>{{formatDate createdAt}}</h5>
@@ -11,5 +16,5 @@
   <hr>
   {{#if updatedAt}}
     <h6>{{formatDate updatedAt}}</h6>
-  {{/if}}
+  {{/if}} -->
 </template>

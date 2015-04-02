@@ -14,9 +14,6 @@ Router.route '/',
   data: ->
     Meteor.subscribe('posts')
 
-Router.route '/create',
-  name: 'postCreate'
-
 Router.route '/:_id',
   name: 'postShow'
   waitOn: ->
