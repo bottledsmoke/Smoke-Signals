@@ -13,7 +13,7 @@ Schemas.Base = new SimpleSchema
         return { $setOnInsert: new Date() }
       else
         @unset()
-
+      return
   updatedAt:
     type: Date
     optional: true
@@ -38,6 +38,11 @@ Blocks.Body = new SimpleSchema
     defaultValue: 'Click me to enter some body text!'
     label: 'Body'
 
+blockMap = {
+  'Title': Blocks.Title
+  'Body': Blocks.Body
+}
+
 
 # S C H E M A S ---------------------------------------------------------------
 
@@ -49,7 +54,7 @@ Schemas.Block = new SimpleSchema [
       # Only allow blocks that exist to be set as templates.
       return _.keys(Blocks)
   data:
-    type: eval('Blocks.Title')
+    type:
   ]
 
 Schemas.Post = new SimpleSchema [ Schemas.Base,
