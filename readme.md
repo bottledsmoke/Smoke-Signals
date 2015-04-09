@@ -1,5 +1,6 @@
 # Le Petit Secret
-By [Tyler Hellner](http://www.bottledsmoke.com)
+<!-- By [Tyler Hellner](http://www.tylerhellner.com) -->
+## By Tyler Hellner
 
 # A B S T R A C T
 
