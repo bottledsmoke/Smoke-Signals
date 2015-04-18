@@ -75,10 +75,9 @@ Fields.GalleryItem = new SimpleSchema
 # B L O C K S ------------------------------------------------------------------
 
 Blocks.Hero = new SimpleSchema
-  type:
+  template:
     type: String
-    autoValue: ->
-      return 'hero'
+    defaultValue: 'hero'
   image:
     type: String
   header:
@@ -89,6 +88,9 @@ Blocks.Hero = new SimpleSchema
     optional: true
 
 Blocks.Text = new SimpleSchema
+  template:
+    type: String
+    defaultValue: 'textBlock'
   quote:
     type: Boolean
     label: 'Quote is true when the text block is a block quote'
@@ -97,9 +99,9 @@ Blocks.Text = new SimpleSchema
     type: String
 
 Blocks.List = new SimpleSchema
-  type:
-    autoValue: ->
-      return 'list'
+  template:
+    type: String
+    defaultValue: 'list'
   class:
     type: String
     allowedValues: listTypes
@@ -108,6 +110,9 @@ Blocks.List = new SimpleSchema
     minLength: 1
 
 Blocks.Gallery = new SimpleSchema
+  template:
+    type: String
+    defaultValue: 'gallery'
   header:
     type: String
     optional: true
