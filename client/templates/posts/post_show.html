@@ -3,11 +3,14 @@
     {{> Template.dynamic template=template}}
   {{/each}} -->
 
+  {{#each blocks}}
+    {{> Template.dynamic template=blockTemplate data=dataContext}}
+  {{/each}}
+
   {{#if isEditing}}
     <input type="text" name='title' id='title' value='{{title}}'>
     <button class='submit'>Submit</button>
   {{else}}
-
     <h1>{{title}}</h1>
   {{/if}}
   <h5>{{formatDate createdAt}}</h5>

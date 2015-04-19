@@ -1,20 +1,9 @@
 <template name="layout">
   <div id="siteWrap">
-    <header>
-      <h3 class='logo'>
-        <a href="{{pathFor 'postsList'}}">Le Petit Secret</a>
-      </h3>
-    <!--   <h3>
-        <a href="{{pathFor 'postCreate'}}">Create</a>
-      </h3> -->
-    </header>
-
+    {{>header}}
     <div id="main">
       {{>yield}}
     </div>
-
-    <footer>
-      <h4>Footer</h4>
-    </footer>
+    {{>footer}}
   </div>
 </template>

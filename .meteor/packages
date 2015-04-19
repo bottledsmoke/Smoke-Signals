@@ -11,3 +11,5 @@ iron:router
 aldeed:collection2
 momentjs:moment
 cryptoquick:stylus-multi
+xolvio:cucumber
+sanjo:jasmine

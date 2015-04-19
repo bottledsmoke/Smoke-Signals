@@ -8,13 +8,14 @@ normalize-css()
 
 html
   // @extend .red
-  font-family 'Futura LT'
+  font-family 'Helvetica Neue'
   background grey
+  height 100%
 
-#siteWrap
-  center(1400px)
+body
+  center(1200px)
+  min-height 100%
   background white
-  padding 3em
 
 a
   text-decoration none
@@ -22,11 +23,17 @@ a
 
 header
   center()
+  padding 3rem 0
   position relative
 
   h3
-    col(1/6)
     text-align center
 
-    a
-      padding 1em
+footer
+  background-color #ddd
+  padding 3rem 1rem
+  text-align center
+
+img
+  width 100%
+  height auto

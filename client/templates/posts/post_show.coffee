@@ -1,10 +1,15 @@
 Template.postShow.created = ->
   Session.set('isEditing', false)
-  console.log(Session.get('isEditing'))
 
 Template.postShow.helpers
   isEditing: ->
     return Session.get('isEditing')
+  blocks: ->
+    return @content
+  blockTemplate: ->
+    return _.keys(this)[0]
+  dataContext: ->
+    return _.values(this)[0]
 
 Template.postShow.events
   'click h1': (e) ->
