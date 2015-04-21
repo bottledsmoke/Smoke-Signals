@@ -47,6 +47,13 @@
 </template>
 
 <template name="gallery">
-
+  <h3>{{header}}</h3>
+  {{#each items}}
+    <div class="galleryItem">
+      <img src="{{image}}" alt="#">
+      <h5>{{text.header}}</h5>
+      <p>{{text.caption}}</p>
+    </div>
+  {{/each}}
   <hr>
 </template>
