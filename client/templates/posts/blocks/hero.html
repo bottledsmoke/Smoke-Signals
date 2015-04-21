@@ -16,9 +16,37 @@
 </template>
 
 <template name="list">
-
+  {{#if orderedList}}
+    <ol>
+      {{#each content}}
+        <li>{{ item }}</li>
+        {{#if nestedItems}}
+          <ol>
+            {{#each nestedItems}}
+                <li>{{this}}</li>
+            {{/each}}
+          </ol>
+        {{/if}}
+      {{/each}}
+    </ol>
+  {{else}}
+    <ul>
+      {{#each content}}
+        <li>{{ item }}</li>
+        {{#if nestedItems}}
+          <ul>
+            {{#each nestedItems}}
+                <li>{{this}}</li>
+            {{/each}}
+          </ul>
+        {{/if}}
+      {{/each}}
+    </ul>
+  {{/if}}
+  <hr>
 </template>
 
 <template name="gallery">
 
+  <hr>
 </template>

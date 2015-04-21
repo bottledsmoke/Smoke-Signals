@@ -4,7 +4,6 @@ Schemas = {}
 Blocks = {}
 Fields = {}
 
-listTypes = ['ol', 'ul']
 textAlignment = [ 'center', 'left', 'right', 'justified' ]
 gridAlignment = [ 'top-left',    'top-center',    'top-right',
                   'center-left', 'center-center', 'center-right',
@@ -56,6 +55,10 @@ Fields.ListItem = new SimpleSchema
     type: String
     label: 'List item'
     minCount: 1
+  nestedItems:
+    type: [String]
+    label: 'Nested List Items'
+    optional: true
 
 # Validating a gallery item should check if there is an image.
 # If not, there must be a text block.
@@ -104,10 +107,9 @@ Blocks.BlockText = new SimpleSchema
     optional: true
 
 Blocks.List = new SimpleSchema
-  listType:
-    type: String
-    label: 'Blocks.List List Type'
-    allowedValues: listTypes
+  orderedList:
+    type: Boolean
+    label: 'Blocks.List is ordered list'
   content:
     type: [Fields.ListItem]
     label: 'Blocks.List Content'

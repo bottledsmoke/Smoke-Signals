@@ -10,6 +10,8 @@ Template.postShow.helpers
     return _.keys(this)[0]
   dataContext: ->
     return _.values(this)[0]
+  loggit: (t) ->
+    console.log t
 
 Template.postShow.events
   'click h1': (e) ->
