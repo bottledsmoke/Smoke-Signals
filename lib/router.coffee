@@ -19,7 +19,7 @@ Router.route '/create',
 
 Router.route '/:_id',
   name: 'postShow'
-  waitOn: ->
+  subscriptions: ->
     Meteor.subscribe('singlePost', @params._id)
   data: ->
     Posts.findOne(@params._id)

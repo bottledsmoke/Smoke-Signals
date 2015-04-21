@@ -1,0 +1,114 @@
+<template name="hero">
+  <div class='hero block-container'>
+    {{#if isEditing}}
+      <div class="image-edit-container">
+        <img src="{{contentPresent image}}" alt="">
+      </div>
+      <input type="text" placeholder='Enter Header Text' value='{{contentPresent header.text}}'>
+      <input type="textarea" placeholder='Enter Header Caption Text' value='{{contentPresent header.caption}}'>
+      <input type="textarea" placeholder='Enter Caption Text' value='{{contentPresent caption.text}}'>
+    {{else}}
+      <img src='{{image}}' alt="#">
+      <h3>{{header.text}}</h3>
+      <p>{{header.caption}}</p>
+      <p>{{caption.text}}</p>
+    {{/if}}
+  </div>
+</template>
+
+<template name="blockText">
+  <div class="blockText block-container">
+    {{#if isEditing}}
+      <input type="textarea" placeholder='Enter body text here!' value='{{contentPresent text}}'>
+    {{else}}
+      {{#if quote}}
+        <p class="block-quote">{{text}}</p>
+      {{else}}
+        <p>{{text}}</p>
+      {{/if}}
+    {{/if}}
+  </div>
+</template>
+
+<template name="list">
+  <div class="list block-container">
+    {{#if isEditing}}
+      {{#if content}}
+        {{#each content}}
+          <input type="text" placeholder='Enter List Item' value='{{contentPresent item}}'>
+          {{#if nestedItems}}
+            {{#each nestedItems}}
+              <input type="text" placeholder='Enter List Item' value='{{contentPresent this}}'>
+            {{/each}}
+          {{/if}}
+        {{/each}}
+      {{else}}
+        <input type="text" placeholder='Enter List Item'>
+      {{/if}}
+    {{else}}
+      {{#if orderedList}}
+        <ol>
+          {{#each content}}
+            <li>{{ item }}</li>
+            {{#if nestedItems}}
+              <ol>
+                {{#each nestedItems}}
+                    <li>{{this}}</li>
+                {{/each}}
+              </ol>
+            {{/if}}
+          {{/each}}
+        </ol>
+      {{else}}
+        <ul>
+          {{#each content}}
+            <li>{{ item }}</li>
+            {{#if nestedItems}}
+              <ul>
+                {{#each nestedItems}}
+                    <li>{{this}}</li>
+                {{/each}}
+              </ul>
+            {{/if}}
+          {{/each}}
+        </ul>
+      {{/if}}
+    {{/if}}
+  </div>
+</template>
+
+<template name="gallery">
+  <div class="gallery block-container">
+    {{#if isEditing}}
+      <input type="text" placeholder='Enter gallery header'>
+      {{#if items}}
+        {{#each items}}
+          <div class="gallery-items-edit">
+            <div class="image-edit-container">
+              <img src="{{contentPresent image}}" alt="">
+            </div>
+            <input type="text" placeholder='Enter caption header' value='{{contentPresent text.header}}'>
+            <input type="text" placeholder='Enter caption' value='{{contentPresent text.caption}}'>
+          </div>
+        {{/each}}
+      {{else}}
+        <div class="gallery-items-edit">
+          <div class="image-edit-container">
+            <img src="{{contentPresent image}}" alt="">
+          </div>
+          <input type="text" placeholder='Enter caption header' value='{{contentPresent text.header}}'>
+          <input type="text" placeholder='Enter caption' value='{{contentPresent text.caption}}'>
+        </div>
+      {{/if}}
+    {{else}}
+      <h3>{{header}}</h3>
+      {{#each items}}
+        <div class="gallery-item">
+          <img src="{{image}}" alt="#">
+          <h5>{{text.header}}</h5>
+          <p>{{text.caption}}</p>
+        </div>
+      {{/each}}
+    {{/if}}
+  </div>
+</template>

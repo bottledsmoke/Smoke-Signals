@@ -8,6 +8,13 @@ Template.postCreate.events
     templateName = e.target.value
     dynamic = new Iron.DynamicTemplate( template: templateName )
 
-    dynamic.insert( el: '#template-container' )
+    console.log dynamic
 
-    console.log e.target.value
+    dynamic.insert( el: '#template-container' )
+  'click #save': (e) ->
+    e.preventDefault()
+
+    blocks = $('.block-container').innerHTML
+
+    console.log blocks
+
