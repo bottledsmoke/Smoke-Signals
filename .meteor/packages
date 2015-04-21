@@ -13,3 +13,4 @@ momentjs:moment
 cryptoquick:stylus-multi
 xolvio:cucumber
 sanjo:jasmine
+iron:dynamic-template

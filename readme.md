@@ -197,6 +197,7 @@ Search
 ## T O . D O
 
 - Create a way to organize content. Tags, categories, etc. should be abstracted from posts later on. (Would fit in under Browsing Methods category.)
+- Cache rendered posts so that they do not need to be rendered one per client.
 
 ## E X A M P L E . P O S T
 
