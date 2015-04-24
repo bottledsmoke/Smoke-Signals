@@ -1,32 +1,48 @@
-# used by Schema Blocks
 ss = Posts._c2._simpleSchema
 # for ease of reference
 @schema = Posts._c2._simpleSchema
 
-# schema._schema["content.$.gallery.items"].type.name -> "Array"
-
 
 # G L O B A L  F U N C T I O N S -----------------------------------------------
 
-
+# -> C A L L B A C K S
 #
-# compileBlockSchema
+# logDataPath: used to set data attribute on the input element.
 #
-# So far, this guy takes in the block name from the data attribute on the
-# buttons, creates an array of the firstLevelKeys in the block, and then returns
-# an object in the dataContext which contains an object containing the first
-# level schema keys and some junk data.
+logDataPath = (pathToField) ->
+  return "content.$." + pathToField
 #
-# This is probably not a good way to do this whole thing, as meddling with the
-# data context for edits could possibly break the data of a post. Time will
-# tell.
+# evalInputType: used to render the correct input type for the current field in a
+#            template.
 #
+evalInputType = (keyOfField) ->
+  settings =
+    header:  "input"
+    text:    "textarea"
+    caption: "textarea"
+    image:   "imageBlock"
+    default: "userSet"
+  if settings[keyOfField]
+    return settings[keyOfField]
+  else
+    return settings.default
+#
+# logKeyType: used as a callback for blockSchema
+#
+logKeyType = (objectName, key, keyType, blockName) ->
+  output =
+    type: keyType
+    dataPath: logDataPath(blockName + '.' + key)
+    inputType: evalInputType(key)
+  return objectName[key] = output
 
-# Get first level keys, then get the type for each of the keys. If it's an
-# object, then re-run the function recursively until it is not.
 
-# testCases - createSchemaRecursive(null) -> ss._schema['content.$.']
-
+# -> H E L P E R S
+#
+# getKeys: Gets the object keys for the current block. The utility of this
+#          this helper is due to the additional '.' in the keys of the
+#          _objectKeys array compared to the _schema array.
+#
 getKeys = (blockName) ->
     if blockName
       # adds dot to the end, because that's just how _objectKeys is structured
@@ -39,11 +55,13 @@ getKeys = (blockName) ->
     # -> on next loop, block = blockCurrent + '.' blockNext
     return ss._objectKeys['content.$.' + blockDot]
 
-logKeyType = (object, key, keyType) ->
-  return object[key] = keyType
-
+#
+# blockSchema: Takes in a blockName and compiles a schema for it recursively.
+#              When it reaches a schema endpoint, it performs callback() on the
+#              values and outputs an object as the result. The data object is
+#              later extended with these values.
+#
 blockSchema = (blockName, callback) ->
-  ss = Posts._c2._simpleSchema
   output = {}
 
   # get current loop level keys in an array
@@ -57,14 +75,15 @@ blockSchema = (blockName, callback) ->
     if keyType is "Object"
       output[key] = blockSchema(blockName + '.' + key, callback)
     else if keyType is "Array"
-      console.log blockName + '.' + key + ".$"
+      # Issue: This is only working if the keys of arrays are objects.
       output[key] = [blockSchema(blockName + '.' + key + ".$", callback)]
     else
       # Perform the callback on the values when an endpoint is reached
-      callback output, key, keyType
+      console.log 'BlockName: ', blockName,
+                  'Key: ', key
+      callback output, key, keyType, blockName
 
-  console.log output
-
+  console.log "Schema: ", output
   return output
 
 
@@ -106,17 +125,12 @@ Template.postCreate.events
     # Get template name
     templateName = $(event.target).data('schema-block')
 
-    console.log templateName
-
     # Use template name to construct the data context from schema
     data = {}
     data['schema'] = blockSchema(templateName, logKeyType)
 
     dynamic = new Iron.DynamicTemplate( template: templateName, data: data)
     dynamic.insert( el: '#template-container' )
-
-    console.log dynamic
-
 
   'click #save': (e) ->
     e.preventDefault()

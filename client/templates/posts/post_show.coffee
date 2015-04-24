@@ -13,6 +13,8 @@ Template.postShow.helpers
   blockTemplate: ->
     return _.keys(this)[0]
   dataContext: ->
+    # extend the current data context here when editing to prevent the schema
+    # from polluting or overriding the data already on the page.
     return _.values(this)[0]
   loggit: (t) ->
     console.log t

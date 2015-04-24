@@ -3,7 +3,7 @@ if Posts.find().count() is 0
   hero = {
     image: 'images/surfers.jpg'
     header:
-      text: 'HERO HEADER'
+      header: 'HERO HEADER'
       textAlignment: 'center'
       gridAlignment: 'center-left'
       caption: 'HERO HEADER - HEADER CAPTION Tee hee'

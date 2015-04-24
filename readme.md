@@ -199,6 +199,17 @@ Search
 - Create a way to organize content. Tags, categories, etc. should be abstracted from posts later on. (Would fit in under Browsing Methods category.)
 - Cache rendered posts so that they do not need to be rendered one per client.
 
+# C R E A T I N G . A . P O S T
+
+First, loop through the schema for each block and return an object that fulfills the goals as follows:
+
+1. Defines the structure of the block schema.
+2. Defines the input type for each field in the block schema.
+
+Once this object has been obtained, we can now use it to generate the inputs for each block template as well as bind the data attributes of each input in order to collect data upon submission of the blog post.
+
+All posts of a block type will be saved using the same block schema. They will, however, differ in styling. This styling will be applied via the button data-attributes once the block is added. Some code will have to go back and be rewritten in order to allow for arrays where singular string fields currently occupy, and each block should contain a class fields at relevant points to allow for different expressions of the same schema via different block 'templates.'s
+
 ## E X A M P L E . P O S T
 
     {
@@ -225,6 +236,3 @@ Search
         },
       ]
     };
-
-# C R E A T I N G . A . P O S T
-

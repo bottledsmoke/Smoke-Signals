@@ -18,7 +18,7 @@ isDefined = ->
 # F I E L D S ------------------------------------------------------------------
 
 Fields.Header = new SimpleSchema
-  text:
+  header:
     type: String
     label: 'Header text.'
     max: 200

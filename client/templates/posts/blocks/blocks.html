@@ -2,11 +2,12 @@
   <div class='hero block-container'>
     {{#if isEditing}}
       <div class="image-edit-container">
+        <input type="text" class='invisible'>
         <img src="{{contentPresent image}}" alt="">
       </div>
       <input type="text" placeholder='Enter Header Text' value='{{contentPresent header.text}}'>
-      <input type="textarea" placeholder='Enter Header Caption Text' value='{{contentPresent header.caption}}'>
-      <input type="textarea" placeholder='Enter Caption Text' value='{{contentPresent caption.text}}'>
+      <textarea placeholder='Enter Header Caption Text'>{{contentPresent header.caption}}</textarea>
+      <textarea placeholder='Enter Caption Text'>{{contentPresent caption.text}}</textarea>
     {{else}}
       <img src='{{image}}' alt="#">
       <h3>{{header.text}}</h3>
