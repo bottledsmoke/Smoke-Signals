@@ -35,7 +35,6 @@ Fields.Header = new SimpleSchema
     label: 'Caption text that appears below the header in the same div.'
     optional: true
 
-
 Fields.Caption = new SimpleSchema
   text:
     type: String
@@ -56,8 +55,11 @@ Fields.ListItem = new SimpleSchema
     label: 'List item'
     minCount: 1
   nestedItems:
-    type: [String]
+    type: [Object]
     label: 'Nested List Items'
+    optional: true
+  "nestedItems.$.item":
+    type: String
     optional: true
 
 # Validating a gallery item should check if there is an image.

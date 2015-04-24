@@ -38,7 +38,7 @@
           <input type="text" placeholder='Enter List Item' value='{{contentPresent item}}'>
           {{#if nestedItems}}
             {{#each nestedItems}}
-              <input type="text" placeholder='Enter List Item' value='{{contentPresent this}}'>
+              <input type="text" placeholder='Enter List Item' value='{{contentPresent item}}'>
             {{/each}}
           {{/if}}
         {{/each}}
@@ -53,7 +53,7 @@
             {{#if nestedItems}}
               <ol>
                 {{#each nestedItems}}
-                    <li>{{this}}</li>
+                  <li>{{item}}</li>
                 {{/each}}
               </ol>
             {{/if}}
@@ -66,7 +66,7 @@
             {{#if nestedItems}}
               <ul>
                 {{#each nestedItems}}
-                    <li>{{this}}</li>
+                  <li>{{item}}</li>
                 {{/each}}
               </ul>
             {{/if}}
@@ -80,9 +80,13 @@
 <template name="gallery">
   <div class="gallery block-container">
     {{#if isEditing}}
+
       <input type="text" placeholder='Enter gallery header'>
+
       {{#if items}}
+
         {{#each items}}
+
           <div class="gallery-items-edit">
             <div class="image-edit-container">
               <img src="{{contentPresent image}}" alt="">
@@ -90,8 +94,11 @@
             <input type="text" placeholder='Enter caption header' value='{{contentPresent text.header}}'>
             <input type="text" placeholder='Enter caption' value='{{contentPresent text.caption}}'>
           </div>
+
         {{/each}}
+
       {{else}}
+
         <div class="gallery-items-edit">
           <div class="image-edit-container">
             <img src="{{contentPresent image}}" alt="">
@@ -99,16 +106,22 @@
           <input type="text" placeholder='Enter caption header' value='{{contentPresent text.header}}'>
           <input type="text" placeholder='Enter caption' value='{{contentPresent text.caption}}'>
         </div>
+
       {{/if}}
+
     {{else}}
+
       <h3>{{header}}</h3>
       {{#each items}}
+
         <div class="gallery-item">
           <img src="{{image}}" alt="#">
           <h5>{{text.header}}</h5>
           <p>{{text.caption}}</p>
         </div>
+
       {{/each}}
+
     {{/if}}
   </div>
 </template>

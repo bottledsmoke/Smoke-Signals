@@ -2,10 +2,9 @@
   <input type="text" placeholder='Enter New Title' autofocus=true>
   <div id="template-container"></div>
   <div class="blockPicker">
-    <button class='blockSelector' value='hero'>Hero</button>
-    <button class='blockSelector' value='blockText'>Block Text</button>
-    <button class='blockSelector' value='list'>List</button>
-    <button class='blockSelector' value='gallery'>Gallery</button>
+    {{#each schemaBlocks}}
+      <button class="block-selector" data-schema-block={{this}}>{{deCamelCase this}}</button>
+    {{/each}}
     <button id='save'>Save</button>
   </div>
 </template>

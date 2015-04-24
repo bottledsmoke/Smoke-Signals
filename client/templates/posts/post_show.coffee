@@ -1,6 +1,10 @@
 Template.postShow.created = ->
   Session.set('isEditing', false)
 
+Template.postShow.onRendered( ->
+  console.log @data
+  )
+
 Template.postShow.helpers
   isEditing: ->
     return Session.get('isEditing')

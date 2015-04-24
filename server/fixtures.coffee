@@ -31,7 +31,7 @@ if Posts.find().count() is 0
                }
                {
                  item: 'Item Two'
-                 nestedItems: [ 'Item Two.One', 'Item Two.Two' ]
+                 nestedItems: [ {item: 'Item Two.One'}, {item: 'Item Two.Two'} ]
                }
                {
                  item: 'Item Three'
@@ -46,7 +46,7 @@ if Posts.find().count() is 0
                }
                {
                  item: 'Item Two'
-                 nestedItems: [ 'Item Two.One', 'Item Two.Two' ]
+                 nestedItems: [ {item: 'Item Two.One'}, {item: 'Item Two.Two'} ]
                }
                {
                  item: 'Item Three'
