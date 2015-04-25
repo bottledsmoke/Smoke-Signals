@@ -1,0 +1,13 @@
+<template name="blockText">
+  <div class="blockText block-container">
+    {{#if isEditing}}
+      <input type="textarea" placeholder='Enter body text here!' value='{{contentPresent text}}'>
+    {{else}}
+      {{#if quote}}
+        <p class="block-quote">{{text}}</p>
+      {{else}}
+        <p>{{text}}</p>
+      {{/if}}
+    {{/if}}
+  </div>
+</template>

@@ -1,0 +1,46 @@
+<template name="list">
+  <div class="list block-container">
+    {{#if isEditing}}
+      {{#if content}}
+        {{#each content}}
+          <input type="text" placeholder='Enter List Item' value='{{contentPresent item}}'>
+          {{#if nestedItems}}
+            {{#each nestedItems}}
+              <input type="text" placeholder='Enter List Item' value='{{contentPresent item}}'>
+            {{/each}}
+          {{/if}}
+        {{/each}}
+      {{else}}
+        <input type="text" placeholder='Enter List Item'>
+      {{/if}}
+    {{else}}
+      {{#if orderedList}}
+        <ol>
+          {{#each content}}
+            <li>{{ item }}</li>
+            {{#if nestedItems}}
+              <ol>
+                {{#each nestedItems}}
+                  <li>{{item}}</li>
+                {{/each}}
+              </ol>
+            {{/if}}
+          {{/each}}
+        </ol>
+      {{else}}
+        <ul>
+          {{#each content}}
+            <li>{{ item }}</li>
+            {{#if nestedItems}}
+              <ul>
+                {{#each nestedItems}}
+                  <li>{{item}}</li>
+                {{/each}}
+              </ul>
+            {{/if}}
+          {{/each}}
+        </ul>
+      {{/if}}
+    {{/if}}
+  </div>
+</template>

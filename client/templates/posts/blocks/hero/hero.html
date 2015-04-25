@@ -1,0 +1,18 @@
+<template name="hero">
+  <div class='hero block-container'>
+    {{#if isEditing}}
+      <div class="image-edit-container">
+        <input type="text" class='invisible'>
+        <img src="{{contentPresent image}}" alt="">
+      </div>
+      <input type="text" placeholder='Enter Header Text' value='{{contentPresent header.header}}'>
+      <textarea placeholder='Enter Header Caption Text'>{{contentPresent header.caption}}</textarea>
+      <textarea placeholder='Enter Caption Text'>{{contentPresent caption.text}}</textarea>
+    {{else}}
+      <img src='{{image}}' alt="#">
+      <h3>{{header.text}}</h3>
+      <p>{{header.caption}}</p>
+      <p>{{caption.text}}</p>
+    {{/if}}
+  </div>
+</template>
