@@ -1,24 +1,44 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { sayHello } from '../actions/actions';
-import HelloWorld from '../components/helloWorld';
-
+import { insertBlock, removeBlock } from '../actions/post-actions';
+import BlockList from '../components/BlockList';
+import Footer from '../components/Footer';
 
 class App extends Component {
   render() {
-    const { dispatch, hello } = this.props;
+    const { dispatch, blocks } = this.props;
     return (
-      <HelloWorld text={ hello }
-                  onSayHello={ text =>
-                    dispatch(sayHello(text)) }/>
+      <div>
+        <BlockList
+            blocks={blocks}
+            handleInsert={(text = 'foo', blockType = 'A', index) =>
+              dispatch(insertBlock(text, blockType, index))}
+            handleMove={(index) =>
+              console.log(index)}
+            handleRemove={(id) =>
+              dispatch(removeBlock(id))}
+        />
+        <Footer
+            handleAddBlock={(text, blockType) =>
+              dispatch(insertBlock(text, blockType, blocks.length))}
+        />
+      </div>
     );
   }
 }
 
 function stateToProps(state) {
   return {
-    hello: state.greeting.text
+    blocks: state.blocks
   };
 }
+
+App.propTypes = {
+  blocks: PropTypes.arrayOf(PropTypes.shape({
+    block: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired
+  }).isRequired).isRequired,
+  dispatch: PropTypes.func.isRequired
+};
 
 export default connect(stateToProps)(App);

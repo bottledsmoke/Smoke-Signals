@@ -1,4 +1,5 @@
 import 'normalize.css';
+import './styles.css';
 import 'babel-core/polyfill';
 
 import React from 'react';
@@ -9,6 +10,7 @@ import { Provider } from 'react-redux';
 import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
 
 import App from './containers/App';
+import Journal from './components/Journal';
 
 const history = createBrowserHistory();
 const store = configureStore();
@@ -19,14 +21,16 @@ React.render(
       {
         () =>
           <Router history={history}>
-            <Route path='/' component={App}/>
+            <Route component={App} path="/"/>
+            <Route component={Journal} path="/journal"/>
           </Router>
       }
     </Provider>
-    <DebugPanel top right bottom>
-      <DevTools store={store}
-                monitor={LogMonitor}
-                visibleOnLoad={true} />
+    <DebugPanel bottom right top>
+      <DevTools monitor={LogMonitor}
+                store={store}
+                visibleOnLoad
+      />
     </DebugPanel>
   </div>,
   document.getElementById('root')

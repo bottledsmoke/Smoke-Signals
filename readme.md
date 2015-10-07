@@ -1,10 +1,16 @@
-# Le Petit Secret
+# Smoke Signals
 <!-- By [Tyler Hellner](http://www.tylerhellner.com) -->
-##### By Tyler Hellner
+By Tyler Hellner
+
+Blocks can become anything. What seems like a wide plethora of block types in the interface exposed to the user is actually just a collection of block presets accessible via button presses and menu / dropdown selections.
+
+ADD_BLOCK
+  - DEFINE_TEXT_CONTEXT
+  - ADD_PHOTO
 
 ## A B S T R A C T
 
-Le Petit Secret is a blog where the user utilizes a drag and drop interface to arrange content blocks. Inside each block, there is a robust inline text editor for content writing. For hero and gallery block types, background images can be set by dragging and dropping them directly on the container.
+Smoke Signals is a blogging engine where the user utilizes a drag and drop interface to arrange content blocks. Inside each block, there is a robust inline text editor for content writing. For hero and gallery block types, background images can be set by dragging and dropping them directly on the container.
 
 ## S I T E . S T R U C T U R E
 
@@ -18,9 +24,6 @@ Le Petit Secret is a blog where the user utilizes a drag and drop interface to a
 
 > note: this is an outward facing struture. This is not how it looks to an admin user.
 
-<!-- ## H O M E . S T R U C T U R E
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus totam eligendi officia, reprehenderit dolores nobis ut porro vitae iste voluptas sint voluptates a eius placeat aut ullam nulla excepturi fuga. -->
 
 ## P O S T . S T R U C T U R E
 

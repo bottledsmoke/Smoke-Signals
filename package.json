@@ -1,5 +1,5 @@
 {
-  "name": "Le Petit Secret",
+  "name": "smokesignals",
   "version": "1.0.0",
   "description": "Nice Blogging Engine",
   "scripts": {
@@ -10,9 +10,10 @@
     "lint": "eslint src",
     "tests": "NODE_ENV=test karma start --single-run=false"
   },
+  "readme": "README.md",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bottledsmoke/lps.git"
+    "url": "https://github.com/bottledsmoke/smoke-signals.git"
   },
   "keywords": [
     "react",
@@ -29,7 +30,7 @@
   ],
   "author": "Tyler Hellner (http://github.com/bottledsmoke)",
   "license": "CC0-1.0",
-  "homepage": "https://www.lepetitsecret.com",
+  "homepage": "",
   "devDependencies": {
     "autoprefixer": "^6.0.3",
     "babel-core": "^5.4.7",
@@ -64,6 +65,7 @@
     "webpack-hot-middleware": "^2.0.0"
   },
   "dependencies": {
+    "node-uuid": "^1.4.3",
     "normalize.css": "^3.0.3",
     "react": "^0.13.3",
     "react-redux": "^3.0.0",
