@@ -1,4 +1,4 @@
-import React, { Component, findDOMNode } from 'react';
+import React, { Component, findDOMNode, PropTypes } from 'react';
 
 export default class Journal extends Component {
   constructor() {
@@ -16,7 +16,8 @@ export default class Journal extends Component {
         {this.state.blocks.map((block, index) =>
           <Entry
                  handleClick={(i) => this.toggleEditing(i)}
-                 handleEdit={(i, text, trimmedText) => this.finishEdit(i, text, trimmedText)}
+                 handleEdit={(i, text, trimmedText) =>
+                   this.finishEdit(i, text, trimmedText)}
                  index={index}
                  isEditing={block.isEditing}
                  text={block.text} />
@@ -25,11 +26,14 @@ export default class Journal extends Component {
     );
   }
   toggleEditing(index) {
+    console.log('boo');
     const toggleBool = this.state.blocks[index].isEditing ? false : true;
     // swap for editing index in the state that stores the index of the current
     // entry being edited instead of storing an isEditing bool on each
     // entry. That gets messy.
-    const resetEditing = this.state.blocks.map(block => block.isEditing = false);
+    const resetEditing = this.state.blocks.map(block =>
+      block.isEditing = false
+    );
     const nextState = [
       ...this.state.blocks.slice(0, index),
       {
@@ -41,7 +45,7 @@ export default class Journal extends Component {
     this.setState({blocks: nextState});
   }
   finishEdit(index, text, trimmedText) {
-    console.log(index, text, trimmedText);
+    console.log('Index: ' + index, 'Text: ' + text, 'Trimmed: ' + trimmedText);
     const nextState = [
       ...this.state.blocks.slice(0, index),
       {
@@ -65,11 +69,16 @@ class Entry extends Component {
       const node = findDOMNode(this.refs.abba);
       const text = node.value;
       var match = /[\r|\n]{2,}/.exec(text);
-      console.log(match);
       if (match) {
-        const slicedText = text.trim().slice(0, match.index);
-        const remainder = text.trim().slice(match.index + 2);
-        this.props.handleEdit(this.props.index, slicedText, remainder);
+        console.log('Matched Text: ',match);
+        const slicedText = text.slice(0, match.index).trim();
+        const remainder = text.slice(match.index).trim();
+        if (slicedText) {
+          this.props.handleEdit(this.props.index, slicedText, remainder);
+        } else {
+          node.value = text.trim();
+          setCaretPosition(node, 0);
+        }
       }
     }
   }
@@ -78,6 +87,7 @@ class Entry extends Component {
       return (
         <textarea
                defaultValue={this.props.text}
+               onBlur={this.props.handleClick.bind(null, this.props.index)}
                onKeyUp={(e) => this.handleKeyUp(e)}
                ref="abba"
                style={{width: '100%'}}
@@ -92,6 +102,34 @@ class Entry extends Component {
           </p>
         </div>
         );
+    }
+  }
+}
+
+Entry.propTypes = {
+  handleClick: PropTypes.func.isRequired,
+  handleEdit: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
+  isEditing: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired,
+};
+
+function setCaretPosition(el, caretPos) {
+  if (el !== null) {
+    if (el.createTextRange) {
+      var range = el.createTextRange();
+      range.move('character', caretPos);
+      range.select();
+      return true;
+    } else {
+      if (el.selectionStart || el.selectionStart === 0) {
+        el.focus();
+        el.setSelectionRange(caretPos, caretPos);
+        return true;
+      } else {
+        el.focus();
+        return false;
+      }
     }
   }
 }
