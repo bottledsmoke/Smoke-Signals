@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { insertBlock, removeBlock } from '../actions/post-actions';
 import BlockList from '../components/BlockList';
@@ -9,6 +10,11 @@ class App extends Component {
     const { dispatch, blocks } = this.props;
     return (
       <div>
+        <div id={'Header'}>
+          <Link to="/">{'Home'}</Link>
+          <Link to="/journal">{'Journal'}</Link>
+          <Link to="/upload">{'File Uploader'}</Link>
+        </div>
         <BlockList
             blocks={blocks}
             handleInsert={(text = 'foo', blockType = 'A', index) =>

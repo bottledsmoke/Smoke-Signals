@@ -11,6 +11,7 @@ import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
 
 import App from './containers/App';
 import Journal from './components/Journal';
+import FileUploader from './components/FileUploader';
 
 const history = createBrowserHistory();
 const store = configureStore();
@@ -21,8 +22,9 @@ React.render(
       {
         () =>
           <Router history={history}>
-            <Route component={App} path="/"/>
-            <Route component={Journal} path="/journal"/>
+            <Route component={App} path="/" />
+            <Route component={Journal} path="/journal" />
+            <Route component={FileUploader} path="/upload" />
           </Router>
       }
     </Provider>
