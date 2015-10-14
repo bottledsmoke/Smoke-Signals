@@ -1,4 +1,5 @@
-import React, { Component, findDOMNode, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 
 export default class FileUploader extends Component {
   constructor() {
@@ -12,7 +13,7 @@ export default class FileUploader extends Component {
   }
   handleFile = (e) => {
     e.preventDefault();
-    const node = findDOMNode(this.refs.file);
+    const node = this.refs.file;
     const file = node.files[0];
     const nextState = {
       ...this.state,
