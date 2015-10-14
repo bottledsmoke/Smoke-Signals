@@ -1,4 +1,5 @@
 import React, { Component, findDOMNode, PropTypes } from 'react';
+import uuid from 'node-uuid';
 
 export default class Journal extends Component {
   constructor() {
@@ -14,7 +15,7 @@ export default class Journal extends Component {
     return (
       <div>
         {this.state.blocks.map((block, index) =>
-          <Entry
+          <Entry key={uuid.v4()}
                  handleClick={(i) => this.toggleEditing(i)}
                  handleEdit={(i, text, trimmedText) =>
                    this.finishEdit(i, text, trimmedText)}

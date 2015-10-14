@@ -3,6 +3,7 @@ import './styles.css';
 import 'babel-core/polyfill';
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { Router, Route } from 'react-router';
 import createBrowserHistory from '../node_modules/react-router/node_modules/history/lib/createBrowserHistory';
 import configureStore from './stores/store';
@@ -16,17 +17,14 @@ import FileUploader from './components/FileUploader';
 const history = createBrowserHistory();
 const store = configureStore();
 
-React.render(
+ReactDOM.render(
   <div>
     <Provider store={store}>
-      {
-        () =>
-          <Router history={history}>
-            <Route component={App} path="/" />
-            <Route component={Journal} path="/journal" />
-            <Route component={FileUploader} path="/upload" />
-          </Router>
-      }
+      <Router history={history}>
+        <Route component={App} path="/" />
+        <Route component={Journal} path="/journal" />
+        <Route component={FileUploader} path="/upload" />
+      </Router>
     </Provider>
     <DebugPanel bottom right top>
       <DevTools monitor={LogMonitor}
