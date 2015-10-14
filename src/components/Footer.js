@@ -11,7 +11,8 @@ export default class Footer extends React.Component {
   }
   checkIfReturn(e) {
     if (e.keyCode === 13) {
-      this.onAddBlock();
+      const blockType = 'B';
+      this.onAddBlock(blockType);
     }
   }
   render() {

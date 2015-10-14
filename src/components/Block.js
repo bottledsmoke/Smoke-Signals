@@ -7,7 +7,7 @@ export default class Block extends React.Component {
     return (
       <div className="block"
            key={`block:${id}`}
-           style={{backgroundColor: type === 'A' ? '#a00' : '#0a0'}}>
+           style={{backgroundColor: type === 'A' ? '#cc0' : '#0cc'}}>
         <h1>{text}</h1>
         <button onClick={onRemoveClick}>{'X'}</button>
         <button onClick={onMoveClick}>{'M'}</button>
