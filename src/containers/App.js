@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { insertBlock, removeBlock } from '../actions/post-actions';
@@ -35,6 +34,7 @@ class App extends Component {
 }
 
 function stateToProps(state) {
+  console.log(state);
   return {
     blocks: state.blocks
   };
@@ -42,8 +42,9 @@ function stateToProps(state) {
 
 App.propTypes = {
   blocks: PropTypes.arrayOf(PropTypes.shape({
-    block: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired
+    text: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired
   }).isRequired).isRequired,
   dispatch: PropTypes.func.isRequired
 };

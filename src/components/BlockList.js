@@ -20,7 +20,7 @@ export default class BlockList extends React.Component {
                   handleInsert(text, blockType, index)}
                 onMoveClick={() => handleMove(index)}
                 onRemoveClick={() => handleRemove(block.id)}
-                text={block.block}
+                text={block.text}
                 type={block.type}
             />
           )
@@ -33,7 +33,8 @@ export default class BlockList extends React.Component {
 BlockList.propTypes = {
   blocks: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
-    block: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired
   }).isRequired).isRequired,
   handleInsert: PropTypes.func.isRequired,
   handleMove: PropTypes.func.isRequired,

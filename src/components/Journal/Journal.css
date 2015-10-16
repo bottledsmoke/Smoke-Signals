@@ -1,0 +1,25 @@
+.journal-container {
+  background-color: #ddd;
+  font-size: 21px;
+  padding: 1em;
+}
+
+.journal-block,
+.journal-input {
+  margin-top: 1em;
+  padding: calc(.618em - .25em) .618em .618em;
+}
+
+.journal-input {
+  border: 1px solid #3f3f3f;
+  width: 100%;
+}
+
+.journal-block {
+  background-color: #fff;
+  margin-top: 1em;
+}
+
+.journal-block:first-child {
+  margin-top: 0;
+}

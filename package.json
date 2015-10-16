@@ -71,6 +71,7 @@
     "karma-chrome-launcher": "^0.2.1",
     "karma-cli": "^0.1.1",
     "karma-sourcemap-loader": "^0.3.6",
+    "lodash": "^3.10.1",
     "node-uuid": "^1.4.3",
     "normalize.css": "^3.0.3",
     "react": "^0.14.0",

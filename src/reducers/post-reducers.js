@@ -1,39 +1,50 @@
+import { findIndex } from 'lodash';
 import { INSERT_BLOCK, REMOVE_BLOCK } from '../constants/post-constants';
+import { SET_EDITING_INDEX, EDIT_BLOCK_TEXT,
+         COMBINE_BLOCK, SPLIT_BLOCK } from '../constants/journal-constants';
 
 // delete after initial state is no longer needed
-import uuid from 'node-uuid';
+import initialState from '../../lib/initialState';
 
-export const initialState = [
-  {
-    id: uuid.v4(),
-    block: 'one',
-    type: 'A'
-  }, {
-    id: uuid.v4(),
-    block: 'two',
-    type: 'A'
-  }, {
-    id: uuid.v4(),
-    block: 'three',
-    type: 'B'
-  }
-];
-
-export default function blocks(state = initialState, action) {
+export function blocks(state = initialState.blocks, action) {
+  const { payload } = action;
   switch (action.type) {
     case INSERT_BLOCK:
-      const { payload } = action;
       return [
         ...state.slice(0, payload.index + 1),
         {
           id: payload.id,
-          block: payload.block,
+          text: payload.block,
           type: payload.blockType
         },
         ...state.slice(payload.index + 1)
       ];
     case REMOVE_BLOCK:
-      return state.filter((block) => block.id !== action.payload.id);
+      return blocks.filter((block) => block.id !== action.payload.id);
+    case EDIT_BLOCK_TEXT:
+      const index = findIndex(state, {id: payload.id});
+      return [
+        ...state.slice(0, index),
+        {
+          ...state[index],
+          text: payload.text
+        },
+        ...state.slice(index + 1)
+      ];
+    case COMBINE_BLOCK:
+      return state;
+    case SPLIT_BLOCK:
+      return state;
+    default:
+      return state;
+  }
+}
+
+export function editingIndex(state = initialState.editingIndex, action) {
+  const { payload } = action;
+  switch (action.type) {
+    case SET_EDITING_INDEX:
+      return payload.id;
     default:
       return state;
   }

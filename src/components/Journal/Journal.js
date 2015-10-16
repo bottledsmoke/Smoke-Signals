@@ -1,11 +1,14 @@
-import React, { Component, findDOMNode, PropTypes } from 'react';
+import './Journal.css';
+
+import React, { Component, PropTypes } from 'react';
 import uuid from 'node-uuid';
 
-export default class Journal extends Component {
+export class Journal extends Component {
   constructor() {
     super();
     this.state = {
       blocks: [{
+        id: uuid.v4(),
         text: 'Yabba yabba doo doo',
         isEditing: false
       }]
@@ -13,21 +16,22 @@ export default class Journal extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="journal-container">
         {this.state.blocks.map((block, index) =>
-          <Entry key={uuid.v4()}
+          <Entry
                  handleClick={(i) => this.toggleEditing(i)}
                  handleEdit={(i, text, trimmedText) =>
                    this.finishEdit(i, text, trimmedText)}
+                 id={block.id}
                  index={index}
                  isEditing={block.isEditing}
+                 key={block.id}
                  text={block.text} />
         )}
       </div>
     );
   }
   toggleEditing(index) {
-    console.log('boo');
     const toggleBool = this.state.blocks[index].isEditing ? false : true;
     // swap for editing index in the state that stores the index of the current
     // entry being edited instead of storing an isEditing bool on each
@@ -64,10 +68,10 @@ export default class Journal extends Component {
   }
 }
 
-class Entry extends Component {
+export class Entry extends Component {
   handleKeyUp(e) {
     if (e.keyCode === 13) {
-      const node = findDOMNode(this.refs.abba);
+      const node = this.refs.abba;
       const text = node.value;
       var match = /[\r|\n]{2,}/.exec(text);
       if (match) {
@@ -84,20 +88,24 @@ class Entry extends Component {
     }
   }
   render() {
-    if (this.props.isEditing) {
+    if (this.props.isBeingEdited) {
       return (
         <textarea
+               autoFocus="true"
+               className="journal-input"
                defaultValue={this.props.text}
-               onBlur={this.props.handleClick.bind(null, this.props.index)}
+               onBlur={() => this.prepareEdit(this.props.id)}
                onKeyUp={(e) => this.handleKeyUp(e)}
                ref="abba"
-               style={{width: '100%'}}
                type="text"
         />
       );
     } else {
       return (
-        <div onClick={this.props.handleClick.bind(null, this.props.index)}>
+        <div
+            className="journal-block"
+            onClick={this.props.handleClick.bind(null, this.props.id)}
+        >
           <p>
             {this.props.text}
           </p>
@@ -105,13 +113,18 @@ class Entry extends Component {
         );
     }
   }
+  prepareEdit(id) {
+    const node = this.refs.abba;
+    const text = node.value.trim();
+    this.props.handleEdit(text, id);
+  }
 }
 
 Entry.propTypes = {
   handleClick: PropTypes.func.isRequired,
   handleEdit: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired,
-  isEditing: PropTypes.func.isRequired,
+  isBeingEdited: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
 };
 

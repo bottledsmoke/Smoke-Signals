@@ -11,7 +11,7 @@ import { Provider } from 'react-redux';
 import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
 
 import App from './containers/App';
-import Journal from './components/Journal';
+import Journal from './containers/Journal';
 import FileUploader from './components/FileUploader';
 
 const history = createBrowserHistory();
@@ -29,7 +29,7 @@ ReactDOM.render(
     <DebugPanel bottom right top>
       <DevTools monitor={LogMonitor}
                 store={store}
-                visibleOnLoad
+                visibleOnLoad={false}
       />
     </DebugPanel>
   </div>,

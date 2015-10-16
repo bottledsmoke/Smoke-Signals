@@ -1,8 +1,8 @@
-import React, { findDOMNode, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
 export default class Footer extends React.Component {
   onAddBlock(blockType) {
-    const node = findDOMNode(this.refs.input);
+    const node = this.refs.input;
     const text = node.value.trim();
     if (text.length > 0) {
       this.props.handleAddBlock(text, blockType);
