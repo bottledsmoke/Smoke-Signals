@@ -5,7 +5,7 @@ import 'babel-core/polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route } from 'react-router';
-import createBrowserHistory from '../node_modules/react-router/node_modules/history/lib/createBrowserHistory';
+import createBrowserHistory from '../node_modules/history/lib/createBrowserHistory';
 import configureStore from './stores/store';
 import { Provider } from 'react-redux';
 import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';

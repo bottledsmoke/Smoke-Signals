@@ -23,7 +23,6 @@ class Journal extends Component {
               }
               handleEdit={
                 (text, id) => {
-                  console.log(text, id);
                   dispatch(editBlockText(text, id));
                   dispatch(setEditingIndex(''));
                 }
@@ -54,11 +53,11 @@ function stateToProps(state) {
 export default connect(stateToProps)(Journal);
 
 Journal.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  isBeingEdited: PropTypes.bool.isRequired,
   blocks: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     isEditing: PropTypes.bool.isRequired,
     text: PropTypes.string.isRequired,
-  }).isRequired).isRequired
+  }).isRequired).isRequired,
+  dispatch: PropTypes.func.isRequired,
+  isBeingEdited: PropTypes.bool.isRequired,
 };
